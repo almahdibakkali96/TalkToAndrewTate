@@ -42,6 +42,7 @@ def handle_userinput(user_question):
                 "{{MSG}}", message.content), unsafe_allow_html=True)
 
 
+
 def create_db(video_url):
     
     loader = YoutubeLoader.from_youtube_url(video_url)
@@ -103,7 +104,7 @@ As you embody the personality traits of Andrew Tate, always aim to inspire and m
 def main():
    
     st.set_page_config(page_title="Andrew Tate Chatbot",
-                       page_icon=":bust_in_silhouette:",
+                       page_icon=":TOP:",
                        layout="centered",
                     )
     st.write(css, unsafe_allow_html=True)
@@ -115,7 +116,13 @@ def main():
         st.session_state.chat_history = []
 
     
-
+    hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
     st.markdown(
         """
         <style>
@@ -137,27 +144,52 @@ def main():
         unsafe_allow_html=True
     )
 
-    st.header("Welcome to Andrew Tate's Motivational Chatbot :muscle:")
+    st.header("Andrew Tate's Motivational AI Friend :top:")
 
     st.write(
         """
-        The Andrew Tate Chatbot is your personal motivational coach. 
+        The Andrew Tate Chatbot is your AI :robot_face: motivational coach. 
         Ask any question, and the chatbot will provide you with valuable life advice 
         in Andrew Tate's unique style, empowering you to overcome challenges and achieve greatness. 
         """
     )
 
-    user_question = st.text_input("What worries you today?")
-    if user_question:
-        handle_userinput(user_question)
-
+   
     video_url = 'https://www.youtube.com/watch?v=d9_YWu9WAvg'
     # create vector store
-    vectorstore = create_db(video_url)
+    with st.spinner('Calling Andrew...:phone:'):
+        vectorstore = create_db(video_url)
+    
 
-    # create conversation chain
-    st.session_state.conversation = get_conversation_chain(
-    vectorstore, user_question)
+
+    user_question = st.text_input("What worries you today?")
+    
+
+    st.write(f'''
+<div class="buy-coffee-button">
+  <a target="_blank" href="https://www.paypal.com/paypalme/maghribicom">
+    <button>
+      <span class="coffee-emoji">&#9749;</span>
+      Buy Me a Coffee
+    </button>
+  </a>
+</div>
+''',
+unsafe_allow_html=True)
+  
+        
+
+
+    with st.spinner('Writing response... :robot_face:'):
+        if user_question:
+            handle_userinput(user_question)
+
+        # create conversation chain
+        
+        st.session_state.conversation = get_conversation_chain(
+        vectorstore, user_question)
+    
+
 
 
 if __name__ == '__main__':

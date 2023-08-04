@@ -13,7 +13,7 @@ body {
 }
 
 .chat-message.user {
-    background-color: #3b3f4d;
+    background-color: #9e9c91;
 }
 
 .chat-message.bot {
@@ -23,13 +23,15 @@ body {
 .chat-message .avatar {
     width: 20%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    padding: 15px;
+    border-radius: 20%;
+    overflow: hidden;
 }
 
 .chat-message .avatar img {
     max-width: 78px;
     max-height: 78px;
-    border-radius: 50%;
     object-fit: cover;
 }
 
@@ -45,6 +47,30 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
+.buy-coffee-button {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+}
+
+.buy-coffee-button button {
+    background-color: #ffffff;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 10 px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.coffee-emoji {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
 </style>
 
 '''
