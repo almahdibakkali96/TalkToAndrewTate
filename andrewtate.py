@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import langchain
 from langchain.document_loaders import YoutubeLoader
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -20,6 +21,7 @@ from langchain.prompts.chat import (
     HumanMessagePromptTemplate,
 )
 
+langchain.verbose = False
 
 api_key = os.environ['OPENAI_API_KEY']
 
